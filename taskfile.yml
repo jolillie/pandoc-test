@@ -21,4 +21,4 @@ tasks:
         pandoc/extra test-pdf.md -o test-pdf.pdf--template eisvogel --listings -M date="`date "+%d %B %Y"`" \
     silent: true
 
-docker run --rm --platform linux/amd64 -v "$(pwd):/data" --user $(id -u):$(id -g) pandoc/extra test-pdf.md -o test-pdf.pdf--template eisvogel --listings -M date="`date "+%d %B %Y"`" 
+docker run --rm --platform linux/amd64 -v "$(pwd):/data" --user $(id -u):$(id -g) pandoc/extra test-pdf.md -o test-pdf.pdf --template eisvogel --listings -M date="`date "+%d %B %Y"`"
