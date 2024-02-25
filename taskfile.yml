@@ -1,0 +1,24 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  default: 
+    cmds:
+      - |
+        pandoc -s --pdf-engine=xelatex \
+        --template eisvogel --listings \
+        -M date="`date "+%d %B %Y"`" \
+        -o test-pdf.pdf test-pdf.md
+    silent: true
+  docker-run:
+    cmds:
+      - |
+        docker run --rm \
+        --platform linux/amd64 \
+        -v "$(pwd):/data" \
+        --user $(id -u):$(id -g) \
+        pandoc/extra test-pdf.md -o test-pdf.pdf--template eisvogel --listings -M date="`date "+%d %B %Y"`" \
+    silent: true
+
+docker run --rm --platform linux/amd64 -v "$(pwd):/data" --user $(id -u):$(id -g) pandoc/extra test-pdf.md -o test-pdf.pdf--template eisvogel --listings -M date="`date "+%d %B %Y"`" 
